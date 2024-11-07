@@ -26,7 +26,7 @@
     <video
       id="jesus"
       class="fullscreen-video"
-      src="./luciano-invite-VEED.mp4"
+      src="https://last-supper.kuaidev.net.ar/luciano-invite-VEED.mp4"
       playsinline
       loop
     ></video>
@@ -38,7 +38,7 @@
     <video
       id="who-are-you-video"
       class="fullscreen-video"
-      src="./who-are-you.mp4"
+      src="https://last-supper.kuaidev.net.ar/who-are-you.mp4"
       playsinline
     ></video>
     <div id="second-part" class="page-section">
@@ -62,10 +62,19 @@
       <h2>Are you coming?</h2>
       <button id="yes">YES</button>
       <div id="no-button">
-        <video src="explosion.mp4" id="explosion" playsinline></video>
+        <video
+          src="https://last-supper.kuaidev.net.ar/explosion.mp4"
+          id="explosion"
+          playsinline
+        ></video>
         <button id="no">NO</button>
       </div>
-      <audio src="wii.mp3" id="wii-song" loop playsinline></audio>
+      <audio
+        src="https://last-supper.kuaidev.net.ar/wii.mp3"
+        id="wii-song"
+        loop
+        playsinline
+      ></audio>
     </div>
 
     <div id="fourth-part" class="page-section">
@@ -74,13 +83,13 @@
       <button id="end">Continue</button>
     </div>
     <video
-      src="nice.mp4"
+      src="https://last-supper.kuaidev.net.ar/nice.mp4"
       id="nice-video"
       class="fullscreen-video"
       playsinline
     ></video>
     <video
-      src="finalvideo.mp4"
+      src="https://last-supper.kuaidev.net.ar/finalvideo.mp4"
       id="final-video"
       class="fullscreen-video"
       playsinline
@@ -116,13 +125,11 @@
     });
 
     function updateContent() {
-      $(window).on("load", function () {
-        $(".loader2").remove();
-        $(".loader").remove();
-        $("#cooking").text("Remember to turn your audio on!");
-        $("#subtitle").remove();
-        $("#continue").show();
-      });
+      $(".loader2").remove();
+      $(".loader").remove();
+      $("#cooking").text("Remember to turn your audio on!");
+      $("#subtitle").remove();
+      $("#continue").show();
     }
 
     $("#continue").on("click", function () {
