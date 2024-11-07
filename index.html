@@ -1,33 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>You are invited</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="loader.css">
-    <style>
-        body{
-            font-family: "Comic Sans MS", "Comic Sans";
-        }
-        #kd_loader{
-            width: 100dvw;
-            height: 100dvh;
-            position: fixed;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap:30px;
-        }
-    </style>
-</head>
-<body>
-    <div id="kd_loader"><span class="loader"></span>
-    <p>I'm cooking pls wait</p>
-    <span class="loader2"></span>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="loader.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+  </head>
+  <body>
+    <div id="kd_loader">
+      <span class="loader"></span>
+      <h2 id="cooking">I'm cooking pls wait</h2>
+      <span class="loader2"></span>
+      <p id="subtitle">On the meantime.. Here you have some italian jokes</p>
+      <button id="continue">Continue</button>
+      <p id="joke"></p>
+      <a id="next_joke">Next joke</a>
     </div>
-    <p>hello</p>
-</body>
+    <video
+      id="jesus"
+      class="fullscreen-video"
+      src="./luciano-invite-VEED.mp4"
+      playsinline
+      loop
+    ></video>
+    <div id="first-part" class="page-section">
+      <h3 id="you-were-invited" class="invisible-text">You were invited to</h3>
+      <h1 id="last-supper" class="invisible-text">My last supper</h1>
+      <button id="know-more">Tell me more</button>
+    </div>
+    <video
+      id="who-are-you-video"
+      class="fullscreen-video"
+      src="./who-are-you.mp4"
+      playsinline
+    ></video>
+    <div id="second-part" class="page-section">
+      <h1>Who are you?</h1>
+      <input id="name" placeholder="Please input your name" />
+      <button id="input-name">Continue</button>
+    </div>
+
+    <div id="third-part" class="page-section">
+      <h3>More information:</h3>
+      <p>
+        It will be at <b>Argentino.Doc</b> (Via Pionieri dell'Aria, 133/A 33080
+        Roveredo in Piano (PN))
+      </p>
+      <br />
+      <p>
+        Although I'm inviting, I'm not paying for everyone. I'm not rich duh
+      </p>
+      <br />
+      <p>December 14th at 19:30?</p>
+      <h2>Are you coming?</h2>
+      <button id="yes">YES</button>
+      <div id="no-button">
+        <video src="explosion.mp4" id="explosion" playsinline></video>
+        <button id="no">NO</button>
+      </div>
+      <audio src="wii.mp3" id="wii-song" loop playsinline></audio>
+    </div>
+
+    <div id="fourth-part" class="page-section">
+      <h1>Thanks for your confirmation</h1>
+      <h2>I'll be waiting for you</h2>
+      <button id="end">Continue</button>
+    </div>
+    <video
+      src="nice.mp4"
+      id="nice-video"
+      class="fullscreen-video"
+      playsinline
+    ></video>
+    <video
+      src="finalvideo.mp4"
+      id="final-video"
+      class="fullscreen-video"
+      playsinline
+    ></video>
+  </body>
+
+  <script>
+    const italianText = `<img src='./pinched-fingers-svgrepo-com.svg' height='20px'>
+        <img src='./pinched-fingers-svgrepo-com.svg' height='20px'>
+        <img src='./pinched-fingers-svgrepo-com.svg' height='20px'>
+        <img src='./pinched-fingers-svgrepo-com.svg' height='20px'>
+        `;
+    const jokes = [];
+    jokes.push(italianText);
+    fetch("./jokes.json")
+      .then((response) => response.json())
+      .then(function (json) {
+        for (const joke of json) {
+          jokes.push(joke);
+        }
+        // Display the first joke after fetching
+        $("#joke").html(jokes[0]);
+      });
+
+    let currentJoke = 0;
+    $("#next_joke").on("click", function () {
+      if (currentJoke < jokes.length - 1) {
+        currentJoke++;
+      } else {
+        currentJoke = 0;
+      }
+      $("#joke").html(jokes[currentJoke]);
+    });
+
+    function updateContent() {
+      $(".loader2").remove();
+      $(".loader").remove();
+      $("#cooking").text("Remember to turn your audio on!");
+      $("#subtitle").remove();
+      $("#continue").show();
+    }
+
+    $("#continue").on("click", function () {
+      $("#kd_loader").animate({ opacity: 0 }, 1000, function () {
+        $("#kd_loader").remove();
+        $("#jesus").trigger("play");
+        $("#you-were-invited").animate({ opacity: 1 }, 1000, function () {
+          $("#last-supper").animate({ opacity: 1 }, 2000, function () {
+            $("#know-more").animate({ opacity: 1 }, 2000);
+          });
+        });
+      });
+    });
+
+    $("#know-more").on("click", function () {
+      $("#who-are-you-video").trigger("play");
+      $("#first-part").remove();
+      $("#jesus").remove();
+      setInterval(showSecondPart, 5000);
+    });
+
+    function showSecondPart() {
+      $("#second-part").css("display", "flex");
+      $("#second-part").animate({ opacity: 1 }, 2000);
+    }
+    let name = "";
+    $("#input-name").on("click", function () {
+      if (!$("#name").val()) {
+        return;
+      }
+      name = $("#name").val();
+      makeDisappear("#second-part", 2000);
+      makeDisappear("#who-are-you-video", 2000);
+      $("#wii-song").trigger("play");
+    });
+
+    function makeDisappear(id, time) {
+      $(id).animate({ opacity: 0 }, time, function () {
+        $(id).remove();
+      });
+    }
+
+    $("#no-button").on("click", function () {
+      $("#explosion").show();
+      $("#explosion").trigger("play");
+      setInterval(disappearButton, 5000);
+    });
+    function disappearButton() {
+      makeDisappear("#no-button", 0);
+    }
+
+    $("#yes").on("click", function () {
+      console.log(name);
+      $.post("./response.php", { name: name }, function (data, status) {
+        console.log(status);
+      });
+      makeDisappear("#third-part", 0);
+      $("#nice-video").trigger("play");
+    });
+
+    $("#end").on("click", function () {
+      makeDisappear("#fourth-part", 0);
+      makeDisappear("#nice-video", 0);
+      $("#final-video").trigger("play");
+    });
+    setInterval(updateContent, 1000);
+  </script>
 </html>
