@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Comic Sans MS";
+  src: url("ComicSansMS3.ttf") format("truetype");
+}
+
 #joke {
   color: red;
   font-size: 10px;
