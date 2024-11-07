@@ -116,11 +116,13 @@
     });
 
     function updateContent() {
-      $(".loader2").remove();
-      $(".loader").remove();
-      $("#cooking").text("Remember to turn your audio on!");
-      $("#subtitle").remove();
-      $("#continue").show();
+      $(window).on("load", function () {
+        $(".loader2").remove();
+        $(".loader").remove();
+        $("#cooking").text("Remember to turn your audio on!");
+        $("#subtitle").remove();
+        $("#continue").show();
+      });
     }
 
     $("#continue").on("click", function () {
