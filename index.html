@@ -9,6 +9,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+
     <link rel="stylesheet" href="loader.css" />
     <link rel="stylesheet" href="style.css?v=1.0.2" />
     <style></style>
@@ -93,7 +94,140 @@
       class="fullscreen-video"
       playsinline
     ></video>
-  </body>
 
-  <script src="script.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCgHnprMXArD7E45O6nkw82jNBvl319roo",
+  authDomain: "last-supper-8b4b7.firebaseapp.com",
+  projectId: "last-supper-8b4b7",
+  storageBucket: "last-supper-8b4b7.firebasestorage.app",
+  messagingSenderId: "731354995866",
+  appId: "1:731354995866:web:934c7ebfd2f65a89515323",
+  measurementId: "G-XN0JGYT5S3"
+};
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const database = getDatabase();
+const usersRef = ref(database, 'users');
+
+
+
+const italianText = `<img src='https://last-supper.kuaidev.net.ar/pinched-fingers-svgrepo-com.svg' height='20px'>
+<img src='https://last-supper.kuaidev.net.ar/pinched-fingers-svgrepo-com.svg' height='20px'>
+<img src='https://last-supper.kuaidev.net.ar/pinched-fingers-svgrepo-com.svg' height='20px'>
+<img src='https://last-supper.kuaidev.net.ar/pinched-fingers-svgrepo-com.svg' height='20px'>
+`;
+const jokes = [];
+jokes.push(italianText);
+fetch("https://last-supper.kuaidev.net.ar/jokes.json")
+.then((response) => response.json())
+.then(function (json) {
+for (const joke of json) {
+  jokes.push(joke);
+}
+// Display the first joke after fetching
+$("#joke").html(jokes[0]);
+});
+
+let currentJoke = 0;
+$("#next_joke").on("click", function () {
+if (currentJoke < jokes.length - 1) {
+currentJoke++;
+} else {
+currentJoke = 0;
+}
+$("#joke").html(jokes[currentJoke]);
+});
+
+function updateContent() {
+$(".loader2").remove();
+$(".loader").remove();
+$("#cooking").text("Remember to turn your audio on!");
+$("#subtitle").remove();
+$("#continue").show();
+}
+
+$("#continue").on("click", function () {
+$("#kd_loader").animate({ opacity: 0 }, 1000, function () {
+$("#kd_loader").remove();
+$("#jesus").trigger("play");
+$("#you-were-invited").animate({ opacity: 1 }, 1000, function () {
+  $("#last-supper").animate({ opacity: 1 }, 2000, function () {
+    $("#know-more").animate({ opacity: 1 }, 2000);
+  });
+});
+});
+});
+
+$("#know-more").on("click", function () {
+$("#who-are-you-video").trigger("play");
+$("#first-part").remove();
+$("#jesus").remove();
+setInterval(showSecondPart, 5000);
+});
+
+function showSecondPart() {
+$("#second-part").css("display", "flex");
+$("#second-part").animate({ opacity: 1 }, 2000);
+}
+let userName = "";
+$("#input-name").on("click", function () {
+if (!$("#name").val()) {
+return;
+}
+userName = $("#name").val();
+makeDisappear("#second-part", 2000);
+makeDisappear("#who-are-you-video", 2000);
+$("#wii-song").trigger("play");
+});
+
+function makeDisappear(id, time) {
+$(id).animate({ opacity: 0 }, time, function () {
+$(id).remove();
+});
+}
+
+$("#no-button").on("click", function () {
+$("#explosion").show();
+$("#explosion").trigger("play");
+setInterval(disappearButton, 5000);
+});
+function disappearButton() {
+makeDisappear("#no-button", 0);
+}
+
+$("#yes").on("click", function () {
+console.log("call");
+push(usersRef, { name : userName})
+.then((response)=>{
+  console.log("request sent");
+  console.log(response);
+})
+
+makeDisappear("#third-part", 0);
+$("#nice-video").trigger("play");
+});
+
+$("#end").on("click", function () {
+makeDisappear("#fourth-part", 0);
+makeDisappear("#nice-video", 0);
+$("#final-video").trigger("play");
+});
+setInterval(updateContent, 30000);
+
+</script>
+  </body>
 </html>
