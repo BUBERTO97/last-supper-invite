@@ -1,169 +1,169 @@
 @font-face {
-  font-family: "Comic Sans MS";
-  src: url("ComicSansMS3.ttf") format("truetype");
+    font-family: "Comic Sans MS";
+    src: url("ComicSansMS3.ttf") format("truetype");
 }
 
 #joke {
-  color: red;
-  font-size: 10px;
-  text-align: center;
-  padding: 0px 20px;
+    color: red;
+    font-size: 10px;
+    text-align: center;
+    padding: 0 20px;
 }
 body {
-  font-family: "Comic Sans MS", "Comic Sans";
+    font-family: "Comic Sans MS", "Comic Sans", monospace;
 }
 #kd_loader {
-  z-index: 9999;
-  width: 100dvw;
-  height: 100dvh;
-  position: fixed;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 30px;
-  left: 0px;
-  top: 0px;
+    z-index: 9999;
+    width: 100dvw;
+    height: 100dvh;
+    position: fixed;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    left: 0;
+    top: 0;
 }
 
 #next_joke {
-  color: green;
-  text-decoration: underline;
+    color: green;
+    text-decoration: underline;
 }
 
 #continue {
-  font-size: 30px;
+    font-size: 30px;
 
-  display: none;
+    display: none;
 }
 
 #change_language {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 button {
-  background: linear-gradient(
-    45deg,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet,
-    red
-  );
-  border: none;
-  color: white;
-  border-radius: 10px;
-  padding: 10px;
-  font-family: "Comic Sans MS", "Comic Sans";
+    background: linear-gradient(
+            45deg,
+            red,
+            orange,
+            yellow,
+            green,
+            blue,
+            indigo,
+            violet,
+            red
+    );
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: "Comic Sans MS", "Comic Sans", monospace;
 }
 
 .fullscreen-video {
-  position: absolute;
-  height: 100dvh;
-  width: 100dvw;
-  left: 0px;
-  top: 0px;
-  object-fit: cover;
-  overflow: hidden;
-  object-position: center;
-  min-width: 100%;
-  min-height: 100%;
+    position: absolute;
+    height: 100dvh;
+    width: 100dvw;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    overflow: hidden;
+    object-position: center;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .page-section {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  height: 100dvh;
-  width: 100dvw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
 .invisible-text {
-  opacity: 0;
+    opacity: 0;
 }
 
 #first-part {
-  z-index: 9998;
-  text-align: center;
+    z-index: 9998;
+    text-align: center;
 }
 
 #jesus {
-  z-index: 9997;
+    z-index: 9997;
 }
 
 #second-part {
-  z-index: 9996;
-  display: none;
-  opacity: 0;
+    z-index: 9996;
+    display: none;
+    opacity: 0;
 }
 
 #who-are-you-video {
-  z-index: 9995;
-  gap: 30px;
+    z-index: 9995;
+    gap: 30px;
 }
 
 #third-part {
-  z-index: 9994;
-  background-image: url("./Jesus.webp");
-  background-size: cover;
-  color: black;
-  gap: 20px;
-  text-align: center;
+    z-index: 9994;
+    background-image: url("./Jesus.webp");
+    background-size: cover;
+    color: black;
+    gap: 20px;
+    text-align: center;
 }
 
 #fourth-part {
-  z-index: 9993;
-  color: black;
-  text-align: center;
+    z-index: 9993;
+    color: black;
+    text-align: center;
 }
 
 #nice-video {
-  z-index: 9992;
+    z-index: 9992;
 }
 
 #final-video {
-  z-index: 9991;
+    z-index: 9991;
 }
 
 #end {
-  font-size: 32px;
+    font-size: 32px;
 }
 
 #know-more {
-  position: absolute;
-  bottom: 100px;
-  font-size: 30px;
-  margin: auto;
-  opacity: 0;
+    position: absolute;
+    bottom: 100px;
+    font-size: 30px;
+    margin: auto;
+    opacity: 0;
 }
 
-#name {
-  border: 2px solid white;
-  background-color: transparent;
-  font-family: "Comic Sans MS", "Comic Sans";
-  margin: 30px 0px;
-  border-radius: 20px;
-  padding: 10px;
-  font-size: 20px;
+.input-field {
+    border: 2px solid white;
+    background-color: transparent;
+    font-family: "Comic Sans MS", "Comic Sans", monospace;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 20px;
+    width: 90%;
 }
 
 #no-button {
-  position: relative;
+    position: relative;
 }
 
 #explosion {
-  display: none;
-  position: absolute;
-  top: -5px;
-  left: -10px;
-  height: 50px;
+    display: none;
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    height: 50px;
 }
