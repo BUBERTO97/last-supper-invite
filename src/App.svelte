@@ -75,7 +75,10 @@
       Id: crypto.randomUUID(),
     }
 
-    displayMessage = props.next;
+    if(displayMessage !== props.next)
+      displayMessage = props.next;
+    else
+      displayMessage += 1;
 
   }
 
@@ -106,6 +109,8 @@
       <h1>Laurea di Alessandro</h1>
       <Loader pageNumber="{handleMessage}"/>
     {:else if displayMessage === 1}
+      <ChooseFamily confirm="{dinnerSubscribe}" familyName="{familyInfo?.nome}" familyNumber="{familyInfo?.persone}"/>
+    {:else if displayMessage === 2}
       <ChooseFamily confirm="{dinnerSubscribe}" familyName="{familyInfo?.nome}" familyNumber="{familyInfo?.persone}"/>
     {:else}
       <Location confirm="{confermaPartecipazione}"/>
